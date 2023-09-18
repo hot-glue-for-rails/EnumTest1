@@ -1,0 +1,23 @@
+<div class="row">
+  <div class='col-md-1 cell--thing--name' >  
+    <span class='<%= "alert-danger" if thing.errors.details.keys.include?(:name) %>'  style="display: inherit;"  >
+        <%= f.text_field :name, value: thing.name, autocomplete: 'off', size: 40, class: 'form-control', type: '' %>
+       
+      
+      <label class='text-muted small form-text' for=''>Name</label>
+    </span>
+    <br />
+  </div>
+  <div class='col-md-1 cell--thing--which' >  
+    <span class='<%= "alert-danger" if thing.errors.details.keys.include?(:which) %>'  style="display: inherit;"  >
+      <%= f.collection_select(:which,  enum_to_collection_select(Thing.defined_enums['which']), :key, :value, {selected: thing.which }, class: 'form-control') %>
+      <label class='text-muted small form-text' for=''>Which</label>
+    </span>
+    <br />
+  </div>
+
+  <div class="col-md-2">
+    <%= link_to "Cancel", things_path,  {class: "btn btn-secondary"} %>
+    <%= f.submit "Save", class: "btn btn-primary pull-right" %>
+  </div>
+</div>
